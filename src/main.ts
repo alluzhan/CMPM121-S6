@@ -6,15 +6,25 @@ import tileUrl from "./assets/tile.svg?no-inline";
 const app = document.querySelector<HTMLElement>("#app")!;
 
 const heading = document.createElement("h1");
-heading.textContent = "D1 project";
+heading.textContent = "D1 Section 6 project";
+let flowers = 0;
 
-const image = document.createElement("img");
-image.src = tileUrl;
-image.alt = "A teal tile with a cream circle";
-image.width = 96;
-image.height = 96;
+const garden = document.createElement("p");
+garden.className = "garden";
 
-const message = document.createElement("p");
-message.textContent = "Your project starts here.";
+const bouquet = document.createElement("p");
 
-app.append(heading, image, message);
+const pickButton = document.createElement("button");
+pickButton.textContent = "🌸 Pick a flower";
+pickButton.addEventListener("click", () => {
+  flowers += 1;
+  render();
+});
+
+function render() {
+  bouquet.textContent = `Flowers picked: ${flowers}`;
+  garden.textContent = "🌼".repeat(Math.min(flowers, 30));
+}
+
+app.append(heading, bouquet, garden, pickButton);
+render();
